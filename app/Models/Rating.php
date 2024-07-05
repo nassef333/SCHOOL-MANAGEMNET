@@ -23,4 +23,20 @@ class Rating extends Model
     {
         return $this->belongsTo(User::class, 'teacher_id');
     }
+
+    public function getSupervisorNameAttribute()
+    {
+        return $this->supervisor ? $this->supervisor->name : null;
+    }
+
+    public function getTeacherNameAttribute()
+    {
+        return $this->teacher ? $this->teacher->name : null;
+    }
+
+    public function getTotalAttribute()
+    {
+        return $this->molars_and_skills + $this->homework + $this->planning + $this->media_usage + $this->learning_strategy + $this->manage_class;
+    }
+
 }
