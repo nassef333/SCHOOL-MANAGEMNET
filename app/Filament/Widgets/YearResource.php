@@ -59,7 +59,7 @@ class YearResource extends ApexChartWidget
                 'lineCap' => 'round',
             ],
             'labels' => ['YearResource'],
-            'colors' => ['#f59e0b'],
+            'colors' => ['#d100ff'],
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use Illuminate\Support\Facades\DB;
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
 class TrainingResource extends ApexChartWidget
@@ -18,7 +19,7 @@ class TrainingResource extends ApexChartWidget
      *
      * @var string|null
      */
-    protected static ?string $heading = 'TrainingResource';
+    protected static ?string $heading = 'Training Resource';
 
     /**
      * Chart options (series, labels, types, size, animations...)
@@ -26,6 +27,13 @@ class TrainingResource extends ApexChartWidget
      *
      * @return array
      */
+
+     public function getColor()
+     {
+        $generalSetting = DB::table('general_settings')->find(1);
+        return $generalSetting->theme_color;
+     }
+
     protected function getOptions(): array
     {
         return [
@@ -54,7 +62,7 @@ class TrainingResource extends ApexChartWidget
                     ],
                 ],
             ],
-            'colors' => ['#f59e0b'],
+            'colors' => [$this->getColor()],
             'stroke' => [
                 'curve' => 'smooth',
             ],

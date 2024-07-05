@@ -54,7 +54,7 @@ class UserResource extends ApexChartWidget
                     ],
                 ],
             ],
-            'colors' => ['#f59e0b'],
+            'colors' => ['#d100ff'],
             'plotOptions' => [
                 'bar' => [
                     'borderRadius' => 3,

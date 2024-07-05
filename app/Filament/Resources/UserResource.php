@@ -14,6 +14,7 @@ use Filament\Tables\Table;
 use Filament\Tables\Filters\SearchFilter;
 use Filament\Tables\Filters\SelectFilter;
 use Kainiklas\FilamentScout\Traits\InteractsWithScout;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class UserResource extends Resource
 {
@@ -27,7 +28,7 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->required()->label('NAME'),
+                TextInput::make('name')->required()->label('NAME')->maxLength(255)->minLength(3),
                 TextInput::make('mobile')->numeric()->minLength(11)->maxLength(11)->unique('users', 'mobile')->label('Mobile'),
                 TextInput::make('email')->email()->label('EMAIL'),
                 Select::make('role_id')->label('ROLE')
@@ -69,6 +70,7 @@ class UserResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    ExportBulkAction::make()
                 ]),
             ]);
     }
